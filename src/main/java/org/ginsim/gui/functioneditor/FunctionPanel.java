@@ -560,11 +560,14 @@ public class FunctionPanel extends JPanel implements HyperlinkListener, KeyListe
             return;
         }
 
-        curGroup.isNegated = bNot.isSelected();
-        if (bAnd.isSelected()) {
+        if (source == bNot) {
+            curGroup.isNegated = bNot.isSelected();
+        } else if (source == bAnd) {
             setOperator(Operators.AND);
-        } else {
+        } else if (source == bOr) {
             setOperator(Operators.OR);
+        } else {
+            System.err.print("What was changed??");
         }
 
         refresh();
